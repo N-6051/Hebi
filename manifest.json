@@ -3,17 +3,17 @@
   "name": "Hebi",
   "short_name": "Hebi",
   "description": "Hebi, A Snake Game!",
-  "start_url": "/",
+  "start_url": "/Hebi/",
   "background_color": "#020a15",
   "theme_color": "#020a15",
   "orientation": "portrait",
   "display": "standalone",
   "icons": [{
-    "src": "/res/icon-512.png",
+    "src": "/Hebi/res/icon-512.png",
     "sizes": "512x512"
   },
     {
-      "src": "/res/icon-128.png",
+      "src": "/Hebi/res/icon-128.png",
       "sizes": "128x128"
     }]
 }
