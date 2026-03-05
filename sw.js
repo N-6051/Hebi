@@ -10,7 +10,7 @@ const ASSETS_TO_CACHE = [
   '/res/icon-128.png',
   '/res/icon-512.png',
   '/res/pfp.jpg',
-  '/res/psp2.ttf',
+  '/res/ps2p.ttf',
   '/manifest.json'
 ];
 
