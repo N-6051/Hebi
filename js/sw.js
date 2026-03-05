@@ -1,6 +1,6 @@
-const CACHE = "hebi-v1";
+const CACHE = "hebi-cache";
 
-self.addEventListener("install", () => {
+self.addEventListener("install", e => {
   self.skipWaiting();
 });
 
@@ -10,35 +10,28 @@ self.addEventListener("activate", e => {
 
 self.addEventListener("fetch", e => {
 
-  // only cache same-origin files
-  if (!e.request.url.startsWith(self.location.origin)) return;
+  if (e.request.method !== "GET") return;
 
-  // HTML → always try network first
-  if (e.request.headers.get("accept").includes("text/html")) {
-    e.respondWith(
-      fetch(e.request)
-        .then(res => {
-          const copy = res.clone();
-          caches.open(CACHE).then(cache => cache.put(e.request, copy));
-          return res;
-        })
-        .catch(() => caches.match(e.request))
-    );
-    return;
-  }
-
-  // CSS / JS / images → stale while revalidate
   e.respondWith(
     caches.match(e.request).then(cacheRes => {
 
       const fetchPromise = fetch(e.request).then(networkRes => {
-        caches.open(CACHE).then(cache => {
-          cache.put(e.request, networkRes.clone());
-        });
+
+        if (
+          networkRes &&
+          networkRes.status === 200 &&
+          networkRes.type === "basic"
+        ) {
+          const clone = networkRes.clone();
+          caches.open(CACHE).then(cache => cache.put(e.request, clone));
+        }
+
         return networkRes;
-      });
+
+      }).catch(() => cacheRes);
 
       return cacheRes || fetchPromise;
+
     })
   );
 
