@@ -3,7 +3,7 @@
   "name": "Hebi",
   "short_name": "Hebi",
   "description": "Hebi, A Snake Game!",
-  "start_url": "/",
+  "start_url": "./",
   "background_color": "#020a15",
   "theme_color": "#020a15",
   "orientation": "portrait-primary",
