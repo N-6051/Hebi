@@ -1,18 +1,17 @@
 const CACHE_NAME = 'Hebi-V2';
 const urlsToCache = [
-  '/'
-  './Hebi/',
-  './Hebi/index.html',
-  './Hebi/css/style.css',
-  './Hebi/js/game.js',
-  './Hebi/js/math.js',
-  './Hebi/js/vector.js',
-  './Hebi/js/preloader.js',
-  './Hebi/res/icon-128.png',
-  './Hebi/res/icon-512.png',
-  './Hebi/res/pfp.jpg',
-  './Hebi/res/ps2p.ttf',
-  './Hebi/res/robotoCondensed.ttf'
+  'Hebi/',
+  'Hebi/index.html',
+  'Hebi/css/style.css',
+  'Hebi/js/game.js',
+  'Hebi/js/math.js',
+  'Hebi/js/vector.js',
+  'Hebi/js/preloader.js',
+  'Hebi/res/icon-128.png',
+  'Hebi/res/icon-512.png',
+  'Hebi/res/pfp.jpg',
+  'Hebi/res/ps2p.ttf',
+  'Hebi/res/robotoCondensed.ttf'
 ];
 
 
