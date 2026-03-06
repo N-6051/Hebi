@@ -18,6 +18,24 @@ let getELM = s => document.querySelector(s);
   });
 })();
 
+function storageAvailable(type) {
+  try {
+    var storage = window[type], x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return e instanceof DOMException && (e.code === 22 || e.code === 1014 || 
+      e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+      storage && storage.length !== 0;
+  }
+}
+let ls_available = false;
+if (storageAvailable('localStorage')) {
+  ls_available = true;
+}
+
+
 
 
 function clearPreviousRendering(col = "rgb(5,17,32)") {
@@ -45,9 +63,12 @@ function main() {
   
   score = 0;
   hscore = 0;
-  let k = localStorage.getItem("hebi");
-  if(k) {
-    hscore = JSON.parse(k).hscore
+  if(ls_available) {
+    
+    let k = localStorage.getItem("hebi");
+    if(k) {
+      hscore = JSON.parse(k).hscore
+    }
   }
   
   
@@ -286,7 +307,7 @@ function GameLoop() {
       snake.len += 10;
       if(score > hscore) {
         hscore = score;
-        localStorage.setItem("hebi", JSON.stringify({hscore:hscore}));
+        if(ls_available) localStorage.setItem("hebi", JSON.stringify({hscore:hscore}));
       }
       //apples.push(generateApple());
       //apples.push(generateApple());
