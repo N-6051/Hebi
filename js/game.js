@@ -473,7 +473,7 @@ addEventListener("keydown", e => {
         }
       }
       
-    } else if(key == 40 || key == 83) {
+    } else if(key == 38 || key == 87) {
       if(snake.direction != "d") {
 
         
