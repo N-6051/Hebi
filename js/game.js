@@ -288,7 +288,7 @@ function increaseSnakesLength(len) {
   })
 }
 
-
+let counter = 0;
 function GameLoop() {
   loop = requestAnimationFrame(GameLoop);
   clearPreviousRendering();
@@ -321,7 +321,11 @@ function GameLoop() {
   dt = (now - then) / 1000;
   fps = 1/dt;
   document.getElementById("dev").innerHTML = `Score: ${score} <br> High Score: ${hscore}`;
-
+  if (counter > fps * 60) {
+    document.getElementById("dev").innerHTML += `<br>FPS: ${Math.floor(fps)}`;
+    counter = 0;
+  }
+  counter += fps;
   
   then = performance.now();
 }
@@ -459,7 +463,7 @@ addEventListener("keydown", e => {
       }
     }
   } else {
-    if((key == 38 || key == 87 || key == 83 || key == 40) && snake.direction != "u") {
+    if((key == 83 || key == 40) && snake.direction != "u") {
 
       if(snake.direction == "l") {
         snake.updateDirectionData = {
