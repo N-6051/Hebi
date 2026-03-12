@@ -288,7 +288,7 @@ function increaseSnakesLength(len) {
   })
 }
 
-let counter = 0;
+let counter = 0, fc = 0;
 function GameLoop() {
   loop = requestAnimationFrame(GameLoop);
   clearPreviousRendering();
@@ -320,9 +320,9 @@ function GameLoop() {
   now = performance.now();
   dt = (now - then) / 1000;
   fps = 1/dt;
-  document.getElementById("dev").innerHTML = `Score: ${score} <br> High Score: ${hscore}`;
+  document.getElementById("dev").innerHTML = `Score: ${score} <br> High Score: ${hscore} <br> FPS: ${fc}`;
   if (counter > fps * 60) {
-    document.getElementById("dev").innerHTML += `<br>FPS: ${Math.floor(fps)}`;
+    fc = Math.floor(fps);
     counter = 0;
   }
   counter += fps;
